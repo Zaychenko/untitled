@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<?php
+Class ShoppingCard {
+
+    private $name;
+    private $city;
+    private static $countre;
+
+    function __construct($city)
+    {
+        $this -> city = $city;
+    }
+
+    public static function setCountre($countre){
+        self::$countre=$countre;
+    }
+
+    public static function getCountre(){
+        return self::$countre;
+    }
+
+    public function setName($name){
+        $this -> name = $name;
+    }
+    function getName(){
+        return $this->name;
+    }
+    function getCity(){
+        return $this->city;
+    }
+
+    function __destruct()
+    {
+        print "Уничтожение";?><br>
+<?php
+    }
+
+}
+
+$product1 = new ShoppingCard("Kiev");
+
+$product1->setName("Ashan");
+ShoppingCard::setCountre("Ukraine");
+echo ShoppingCard::getCountre();?><br>
+<?php
+echo $product1->getName();?><br>
+<?php
+echo $product1->getCity();
+var_dump($product1);
+var_dump($product1 instanceof ShoppingCard);
+
+$product1 = new ShoppingCard("Lvov");
+$product1->setName("Metro");
+echo $product1->getName();?><br>
+<?php
+echo $product1->getCity();?><br>
+<?php
+
+Class inShoppingCard extends ShoppingCard {
+    function __construct($city)
+    {
+        parent::__construct($city); //Вызов конструктора супер класа
+    }
+
+    public function getName()
+    {
+        return $this->getCity();
+    }
+
+}
+$inShopCard = new inShoppingCard("kravec");
+echo $inShopCard->getCity();
+
+?>
+</body>
+</html>
